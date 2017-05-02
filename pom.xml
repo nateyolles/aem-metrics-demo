@@ -26,8 +26,6 @@
         <module>core</module>
         <module>ui.apps</module>
         <module>ui.content</module>
-        <module>it.tests</module>
-        <module>it.launcher</module>
     </modules>
 
     <properties>
@@ -494,10 +492,10 @@
                 <scope>provided</scope>
             </dependency>
             <dependency>
-        <groupId>biz.aQute</groupId>
-        <artifactId>bndlib</artifactId>
-        <version>1.50.0</version>
-        <scope>provided</scope>
+                <groupId>biz.aQute</groupId>
+                <artifactId>bndlib</artifactId>
+                <version>1.50.0</version>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.osgi</groupId>
@@ -560,6 +558,28 @@
                 <version>5.7.4</version>
                 <scope>provided</scope>
             </dependency>
+
+            <!-- Metrics-->
+            <dependency>
+                <groupId>org.apache.sling</groupId>
+                <artifactId>org.apache.sling.commons.metrics</artifactId>
+                <version>1.2.0</version>
+                <scope>provided</scope>
+            </dependency>
+            <!-- <dependency>
+                <groupId>com.adobe.granite</groupId>
+                <artifactId>com.adobe.granite.dropwizard.metrics</artifactId>
+                <version>3.1.0</version>
+                <scope>provided</scope>
+            </dependency> -->
+            <dependency>
+                <groupId>io.dropwizard.metrics</groupId>
+                <artifactId>metrics-core</artifactId>
+                <version>3.1.0</version>
+            </dependency>
+
+
+
             <!-- Testing -->
             <dependency>
                 <groupId>junit</groupId>

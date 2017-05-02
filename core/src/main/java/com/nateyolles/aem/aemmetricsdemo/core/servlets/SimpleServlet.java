@@ -24,7 +24,15 @@ import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.api.resource.ValueMap;
 
 import javax.servlet.ServletException;
+
 import java.io.IOException;
+
+import com.codahale.metrics.MetricRegistry;
+
+import org.apache.sling.commons.metrics.Counter;
+import org.apache.sling.commons.metrics.MetricsService;
+import org.apache.felix.scr.annotations.Reference;
+import org.apache.felix.scr.annotations.ReferencePolicy;
 
 /**
  * Servlet that writes some sample content into the response. It is mounted for
@@ -33,17 +41,27 @@ import java.io.IOException;
  * idempotent. For write operations use the {@link SlingAllMethodsServlet}.
  */
 @SuppressWarnings("serial")
-@SlingServlet(resourceTypes = "aemmetricsdemo/components/structure/page",
-    extensions = "txt", methods = "GET")
+@SlingServlet(paths={"/bin/start"})
 public class SimpleServlet extends SlingSafeMethodsServlet {
 
     private static final long serialVersionUid = 1L;
+
+    @Reference
+    private MetricsService metricsService;
+
+    @Reference(target = "(name=sling)")
+    private MetricRegistry registry;
 
     @Override
     protected void doGet(final SlingHttpServletRequest req,
             final SlingHttpServletResponse resp) throws ServletException, IOException {
         final Resource resource = req.getResource();
         resp.setContentType("text/plain");
-        resp.getWriter().write("Title = " + resource.adaptTo(ValueMap.class).get("jcr:title"));
+        resp.getWriter().write("hello");
+
+
+
+        Counter counter = metricsService.counter("foo");
+        counter.increment();
     }
 }
